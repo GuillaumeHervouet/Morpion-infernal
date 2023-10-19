@@ -40,8 +40,28 @@ class Board
     @grid[position] = symbol
   end
 
-  # Récupère toutes les valeurs du plateau
+  # Récupère les valeurs du plateau
   def get_all_values
     @grid.values
   end
+
+  def winner?(symbol)
+    # les ligne
+    return true if @grid["A1"] == symbol && @grid["A2"] == symbol && @grid["A3"] == symbol
+    return true if @grid["B1"] == symbol && @grid["B2"] == symbol && @grid["B3"] == symbol
+    return true if @grid["C1"] == symbol && @grid["C2"] == symbol && @grid["C3"] == symbol
+
+    # Colonnes
+    return true if @grid["A1"] == symbol && @grid["B1"] == symbol && @grid["C1"] == symbol
+    return true if @grid["A2"] == symbol && @grid["B2"] == symbol && @grid["C2"] == symbol
+    return true if @grid["A3"] == symbol && @grid["B3"] == symbol && @grid["C3"] == symbol
+
+    # Diagonales
+    return true if @grid["A1"] == symbol && @grid["B2"] == symbol && @grid["C3"] == symbol
+    return true if @grid["A3"] == symbol && @grid["B2"] == symbol && @grid["C1"] == symbol
+
+    # Sinon faux
+    false
+  end
 end
+
